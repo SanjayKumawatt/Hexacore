@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { 
   Check, 
-  X, 
-  Zap, 
   Phone, 
   Bot, 
   CreditCard, 
   Calendar, 
   Webhook, 
   Cpu, 
-  Globe 
+  Server,
+  ShieldCheck,
+  Zap,
+  Users
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const PricingAndIntegrations = () => {
-  const [isAnnual, setIsAnnual] = useState(false);
-
+  
   // Animation Variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -35,67 +35,71 @@ const PricingAndIntegrations = () => {
     }
   };
 
-  // --- INTEGRATIONS DATA ---
-  // Using Lucide icons to represent the brands shown in your image
+  // --- INTEGRATIONS DATA (Same as before) ---
   const integrations = [
-    { name: 'Twilio', icon: <Phone size={24} />, desc: 'Telephony' },
-    { name: 'ElevenLabs', icon: <Bot size={24} />, desc: 'Voice Synthesis' },
-    { name: 'OpenAI', icon: <Cpu size={24} />, desc: 'Intelligence' },
-    { name: 'Cal.com', icon: <Calendar size={24} />, desc: 'Scheduling' },
-    { name: 'Stripe', icon: <CreditCard size={24} />, desc: 'Payments' },
-    { name: 'Zapier', icon: <Webhook size={24} />, desc: 'Automation' },
+    { name: 'Twilio', icon: <Phone size={24} /> },
+    { name: 'ElevenLabs', icon: <Bot size={24} /> },
+    { name: 'OpenAI', icon: <Cpu size={24} /> },
+    { name: 'Cal.com', icon: <Calendar size={24} /> },
+    { name: 'Stripe', icon: <CreditCard size={24} /> },
+    { name: 'Zapier', icon: <Webhook size={24} /> },
   ];
 
-  // --- PRICING DATA ---
+  // --- NEW PRICING DATA (3 TIERS) ---
   const plans = [
     {
-      name: 'Free',
-      description: 'Perfect for trying out AI calling. Get started with basic features at no cost.',
-      priceMonthly: '₹0',
-      priceAnnual: '₹0',
-      isPopular: false,
+      name: 'Free (Beta)',
+      subtitle: 'For product testing & pilots',
+      price: '₹0',
+      period: '/forever',
+      description: 'Perfect for testing the waters with AI voice agents.',
       features: [
-        '2 AI Agents',
-        '3 Campaigns',
-        'Max 10 contacts per campaign',
-        '2 Flow Automations',
-        '3 Knowledge Bases',
-        '2 Webhooks',
-        'System-assigned phone number',
-        '50 free credits'
+        'Limited call minutes',
+        'Shared infrastructure',
+        'Community support',
+        'No credit card required'
       ],
-      buttonText: 'Get Started',
-      buttonStyle: 'outline'
+      buttonText: 'Join Beta',
+      buttonLink: '/signup',
+      highlight: false,
+      icon: <Users size={24} />
     },
     {
-      name: 'Growth',
-      description: 'For growing businesses. Unlock advanced features, more capacity, and premium support.',
-      priceMonthly: '₹4,000',
-      priceAnnual: '₹35,000', // Discounted for annual
-      isPopular: true,
+      name: 'Startup Access',
+      subtitle: 'For early customers & pilots',
+      price: 'Usage Based',
+      period: '', // No fixed period
+      description: 'Pay only for what you use. Scale as you grow.',
       features: [
-        '25 AI Agents',
-        '50 Campaigns',
-        '1000 contacts/campaign',
-        '25 Flow Automations',
-        '25 Knowledge Bases',
-        '20 Webhooks',
-        '10 Phone Numbers',
-        'Purchase own phone numbers',
-        'Credit-based calling',
-        'Priority support',
-        'Choose your LLM model',
-        'Advanced analytics'
+        'Usage-based billing',
+        'Priority onboarding',
+        'Limited availability',
+        'Full platform access'
       ],
-      buttonText: 'Start Free Trial',
-      buttonStyle: 'solid'
+      buttonText: 'Request Access',
+      buttonLink: '/contact',
+      highlight: true, // This will make it pop
+      badge: 'LIMITED SPOTS',
+      icon: <Zap size={24} />
+    },
+    {
+      name: 'Enterprise',
+      subtitle: 'Later Stage / Custom',
+      price: 'Custom',
+      period: '',
+      description: 'For high-volume compliance and dedicated needs.',
+      features: [
+        'Dedicated infrastructure',
+        'SLA & compliance support',
+        'API-first deployment',
+        '24/7 Dedicated Support'
+      ],
+      buttonText: 'Contact Sales',
+      buttonLink: '/contact',
+      highlight: false,
+      icon: <ShieldCheck size={24} />
     }
   ];
-
-  
-  const scrollToSection = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section className="py-24 bg-gray-50 dark:bg-[#0a0a0a] transition-colors duration-300">
@@ -131,42 +135,20 @@ const PricingAndIntegrations = () => {
                 <span className="font-semibold text-gray-900 dark:text-white text-sm">
                   {item.name}
                 </span>
-                {/* Optional: Small description if needed */}
-                {/* <span className="text-[10px] text-gray-400 mt-1">{item.desc}</span> */}
               </motion.div>
             ))}
           </motion.div>
         </div>
 
-        {/* ==================== PART 2: PRICING ==================== */}
-        <div id="pricing" className='pt-19'>
-          <div className="text-center mb-12">
+        {/* ==================== PART 2: PRICING (UPDATED) ==================== */}
+        <div id="pricing">
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Simple, Transparent Pricing
+              Flexible Plans for Every Stage
             </h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-8">
-              Start free, upgrade when you're ready. No hidden fees.
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Whether you are testing the waters or scaling up, we have a plan for you.
             </p>
-
-            {/* Toggle Switch */}
-            <div className="flex items-center justify-center gap-4">
-              <span className={`text-sm font-medium ${!isAnnual ? 'text-gray-900 dark:text-white' : 'text-gray-500'}`}>
-                Monthly
-              </span>
-              <button
-                onClick={() => setIsAnnual(!isAnnual)}
-                className="relative w-14 h-7 bg-gray-200 dark:bg-gray-700 rounded-full focus:outline-none transition-colors duration-300"
-              >
-                <motion.div
-                  layout
-                  transition={{ type: "spring", stiffness: 700, damping: 30 }}
-                  className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow-sm ${isAnnual ? 'translate-x-7' : 'translate-x-0'}`}
-                />
-              </button>
-              <span className={`text-sm font-medium ${isAnnual ? 'text-gray-900 dark:text-white' : 'text-gray-500'}`}>
-                Yearly <span className="text-orange-500 text-xs ml-1 font-bold">(Save 15%)</span>
-              </span>
-            </div>
           </div>
 
           <motion.div 
@@ -174,37 +156,51 @@ const PricingAndIntegrations = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-            className="flex flex-col md:flex-row justify-center gap-8 max-w-5xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
           >
             {plans.map((plan, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className={`relative flex flex-col p-8 rounded-2xl w-full md:w-1/2 transition-all duration-300 ${
-                  plan.isPopular 
+                className={`relative flex flex-col p-8 rounded-2xl transition-all duration-300 h-full ${
+                  plan.highlight 
                     ? 'bg-white dark:bg-gray-900 border-2 border-orange-500 shadow-2xl shadow-orange-500/10 scale-100 md:scale-105 z-10' 
-                    : 'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm opacity-90 hover:opacity-100 hover:shadow-lg'
+                    : 'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm hover:border-orange-200 dark:hover:border-orange-900'
                 }`}
               >
-                {/* Popular Badge */}
-                {plan.isPopular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
-                    MOST POPULAR
+                {/* Optional Badge for Startup Access */}
+                {plan.badge && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg tracking-wider">
+                    {plan.badge}
                   </div>
                 )}
 
+                {/* Header */}
                 <div className="mb-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{plan.name}</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 min-h-[40px]">
-                    {plan.description}
+                  <div className="w-12 h-12 bg-orange-50 dark:bg-orange-900/20 rounded-xl flex items-center justify-center text-orange-600 dark:text-orange-400 mb-4">
+                    {plan.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">{plan.name}</h3>
+                  <p className="text-sm font-medium text-orange-600 dark:text-orange-400 mt-1">
+                    {plan.subtitle}
                   </p>
                 </div>
 
-                <div className="mb-8">
-                  <span className="text-4xl font-bold text-gray-900 dark:text-white">
-                    {isAnnual ? plan.priceAnnual : plan.priceMonthly}
-                  </span>
-                  <span className="text-gray-500 dark:text-gray-400">/month</span>
+                {/* Price */}
+                <div className="mb-6 pb-6 border-b border-gray-100 dark:border-gray-800">
+                  <div className="flex items-baseline">
+                    <span className="text-3xl font-bold text-gray-900 dark:text-white">
+                      {plan.price}
+                    </span>
+                    {plan.period && (
+                      <span className="text-gray-500 dark:text-gray-400 ml-1 text-sm">
+                        {plan.period}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
+                    {plan.description}
+                  </p>
                 </div>
 
                 {/* Features List */}
@@ -218,9 +214,10 @@ const PricingAndIntegrations = () => {
                 </ul>
 
                 {/* Button */}
-                <Link onClick={() => scrollToSection("contact")}
-                  className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
-                    plan.buttonStyle === 'solid'
+                <Link
+                  to={plan.buttonLink}
+                  className={`w-full py-3 px-6 rounded-lg font-semibold text-center transition-all duration-300 ${
+                    plan.highlight
                       ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-500/25'
                       : 'border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                   }`}
@@ -231,8 +228,8 @@ const PricingAndIntegrations = () => {
             ))}
           </motion.div>
           
-          <p className="text-center text-xs text-gray-400 mt-8">
-            All plans include 30-day money-back guarantee. No credit card required for free plan.
+          <p className="text-center text-xs text-gray-400 mt-12">
+            Need help choosing? <Link to="/contact" className="text-orange-500 hover:underline">Contact our sales team</Link>.
           </p>
         </div>
 
