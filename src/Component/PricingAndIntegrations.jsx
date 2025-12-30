@@ -216,7 +216,7 @@ const PricingAndIntegrations = () => {
 
                 {/* Button */}
                 <Link
-                  onClick={() => scrollToSection(plan.buttonLink)} className={`w-full py-3 px-6 rounded-lg font-semibold text-center transition-all duration-300 ${plan.highlight
+                  onClick={() => scrollToSection(item.id)} className={`w-full py-3 px-6 rounded-lg font-semibold text-center transition-all duration-300 ${plan.highlight
                     ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-500/25'
                     : 'border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
                     }`}
