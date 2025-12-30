@@ -19,6 +19,7 @@ const Footer = () => {
   };
 
   const companyLinks = [
+    { name: 'About Us', id: 'about' },
     { name: 'Contact', id: 'contact' },
   ];
 
@@ -59,7 +60,7 @@ const Footer = () => {
             className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6"
           >
             <Link
-              to="/signup"
+              onClick={() => scrollToSection("contact")}
               className="flex items-center gap-2 rounded-md bg-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 transition-all hover:scale-105"
             >
               <Sparkles size={16} />

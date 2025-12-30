@@ -29,9 +29,10 @@ const Header = () => {
   };
 
   const navLinks = [
+    {name: "About", id:"about"},
     { name: 'Features', id: 'features' },
     { name: 'Use Cases', id: 'use-cases' },
-    { name: 'Pricing', id: 'pricing' },
+    { name: 'Early Access Plan', id: 'pricing' },
 
     { name: 'Contact', id: 'contact' },
   ];
@@ -50,6 +51,7 @@ const Header = () => {
       transition: { duration: 0.2, ease: "easeInOut" }
     }
   };
+
 
   return (
     <motion.header
@@ -102,18 +104,10 @@ const Header = () => {
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
 
-            {/* Sign In */}
-            <Link to="/signin">
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                className="text-sm font-semibold text-gray-700 hover:text-black dark:text-gray-200 dark:hover:text-white transition-colors"
-              >
-                Sign In
-              </motion.span>
-            </Link>
+
 
             {/* Get Started Button */}
-            <Link to="/signup">
+            <Link onClick={() => scrollToSection("contact")}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -180,23 +174,9 @@ const Header = () => {
 
               <div className="h-px bg-gray-200 dark:bg-gray-700 my-2" />
 
-              <Link
-                to="/signin"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-base font-medium text-gray-700 dark:text-gray-200 hover:text-blue-600"
-              >
-                Sign In
-              </Link>
 
-              <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2.5 rounded-lg w-full shadow-md"
-                >
-                  <Sparkles size={16} />
-                  Get Started Free
-                </motion.button>
-              </Link>
+
+
             </div>
           </motion.div>
         )}

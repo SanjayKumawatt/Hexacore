@@ -12,6 +12,11 @@ const Hero = () => {
     },
   };
 
+  
+  const scrollToSection = (id) => {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  };
+  
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -74,7 +79,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
           >
             <Link 
-              to="/signup" 
+            onClick={() => scrollToSection("contact")}
               className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white rounded-lg font-semibold text-lg flex items-center justify-center gap-2 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 hover:-translate-y-1 transition-all duration-300"
             >
               Start Building Free

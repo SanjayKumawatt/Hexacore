@@ -22,14 +22,8 @@ const App = () => {
           element:<Home/>
         }
       ]
-    },{
-      path:"/signin",
-      element:<SignIn/>
     }
-    ,{
-      path:"/signup",
-      element:<SignUp/>
-    }
+    
     ,{
       path:"/terms",
       element:<Terms/>
